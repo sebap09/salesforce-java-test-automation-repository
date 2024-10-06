@@ -1,0 +1,73 @@
+{
+  "adminUser": {
+    "username": "",
+    "password": "",
+    "sfAccessToken": ""
+  },
+  "orgId": "",
+  "environment": "",
+  "salesforceConsumerKey": "",
+  "salesforceConsumerSecret": "",
+  "pageUrls": {
+    "login": "",
+    "account": "",
+    "product": "",
+    "objectDetails": "",
+    "contact": "",
+    "asset": ""
+  },
+  "validationMessages": {
+    "accountCreated":"Account \"PLACEHOLDER\" was created.",
+    "accountSaved":"Account \"PLACEHOLDER\" was saved.",
+    "productCreated":"Product \"PLACEHOLDER\" was created.",
+    "productSaved":"Product \"PLACEHOLDER\" was saved.",
+    "contactCreated":"Contact \"PLACEHOLDER\" was created.",
+    "assetCreated":"Asset \"PLACEHOLDER\" was created."
+  },
+  "apiData": {
+    "account": {
+      "url": "",
+      "defaultData":{
+        "Name":"",
+        "BillingCity":"",
+        "BillingCountry":"",
+        "BillingPostalCode":"",
+        "BillingState":"",
+        "BillingStreet":"",
+        "Phone":"",
+        "Type":"",
+        "Industry":"",
+        "Description": ""
+      }
+    },
+    "product": {
+      "url": "",
+      "defaultData":{
+        "Name":"",
+        "ProductCode":"",
+        "Description":"",
+        "IsActive":""
+      }
+    },
+    "contact": {
+      "url": "",
+      "defaultData":{
+        "FirstName":"",
+        "LastName":"",
+        "Email":"",
+        "MobilePhone":""
+      }
+    },
+    "asset": {
+      "url": "",
+      "defaultData":{
+        "Name":"",
+        "SerialNumber":"",
+        "Description":"",
+        "IsCompetitorProduct": ""
+      }
+    },
+    "queryEndpoint": "",
+    "authEndpoint": ""
+  }
+}
