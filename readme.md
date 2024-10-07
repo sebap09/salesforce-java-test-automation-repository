@@ -7,20 +7,6 @@ providing reusable methods for a wide range of interactive actions and seamless 
 The automation framework leverages industry-used tools and technologies, including Cucumber, Selenium, and TestNG, 
 ensuring scalability, flexibility, and maintainability for your Salesforce automation efforts.
 
-## Technology Stack
-
-- **Java 21**: The core language for implementing the test automation.
-- **Cucumber**: Behavior-Driven Development (BDD) framework for defining tests in a human-readable format.
-- **Selenium**: Web automation tool for interacting with the Salesforce UI.
-- **TestNG**: Test execution framework for organizing and running tests.
-- **HttpClient**: HTTP client for making REST API calls to Salesforce for backend operations.
-- **Log4j**: Logging framework for detailed logging and debugging.
-- **DataFaker**: Library used to generate realistic test data for Salesforce records.
-- **SnakeYAML**: Library for parsing and writing YAML files, used to manage test configuration and data.
-- **Gson**: Library for serializing and deserializing JSON data, essential for handling Salesforce API responses and requests.
-
-For exact versions check pom.xml file :)
-
 ## Features
 
 - **Logging in to platform**
@@ -34,6 +20,20 @@ For exact versions check pom.xml file :)
 - **Data-Driven Testing**: Test data generated dynamically using DataFaker.
 - **Deployment-ready yaml configuration**: Feature files paths, glue paths and plugins can be easily configured.
 - **Data stored in JSON:** Credentials, endpoints, org data, validation messages, data structure is stored in well-known JSON format.
+
+## Technology Stack
+
+- **Java 21**: The core language for implementing the test automation.
+- **Cucumber**: Behavior-Driven Development (BDD) framework for defining tests in a human-readable format.
+- **Selenium**: Web automation tool for interacting with the Salesforce UI.
+- **TestNG**: Test execution framework for organizing and running tests.
+- **HttpClient**: HTTP client for making REST API calls to Salesforce for backend operations.
+- **Log4j**: Logging framework for detailed logging and debugging.
+- **DataFaker**: Library used to generate realistic test data for Salesforce records.
+- **SnakeYAML**: Library for parsing and writing YAML files, used to manage test configuration and data.
+- **Gson**: Library for serializing and deserializing JSON data, essential for handling Salesforce API responses and requests.
+
+For exact versions check pom.xml file :)
 
 ## Design patterns
 - Bot Pattern -> Action Bot
