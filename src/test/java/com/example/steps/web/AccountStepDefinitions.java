@@ -5,10 +5,8 @@ import com.example.pages.CommonPage;
 import com.example.sharedstate.SharedDataKeys;
 import com.example.sharedstate.TestContext;
 import io.cucumber.java.ParameterType;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.json.JSONObject;
-import org.testng.Assert;
 
 import java.util.HashMap;
 import java.util.Map;
