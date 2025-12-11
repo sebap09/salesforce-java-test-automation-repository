@@ -74,9 +74,27 @@ For exact versions check pom.xml file :)
 6. Check tests reliability for specific resolution (from default tests are build for 2560x1440 screen resolution, so for smaller resolution additional scrolls might be needed).
 
 ## Running Tests
-1. Run Cucumber Tests: You can run the tests using Maven:
+1. Run Cucumber Tests: You can run the tests using Maven (by default it runs all feature files):
     ```bash
      mvn test
+    ```
+   To define custom parameters we can provide them directly in cli for runner with -Dcucumber.**option** flag: 
+
+    e.g. **features**:
+    ```bash
+      mvn test -Dcucumber.features=src/test/resources/features/default/accounts/account-creating-new-account-on-ui.feature
+    ```
+   e.g. **glue**:
+    ```bash
+      mvn test -Dcucumber.glue=com.example.sharedstate
+    ```
+   e.g. **plugin**:
+    ```bash
+      mvn test -Dcucumber.plugin=html:target/cucumber-reports.html
+    ```  
+   e.g. **tags**:
+    ```bash
+      mvn test -Dcucumber.filter.tags='@SmokeTest and @Market'
     ```
 2. Test Reports: Test execution reports are generated in the target folder.
 
@@ -86,7 +104,7 @@ Any contributions are welcome to improve this automation suite. Feel free to ope
 ## Next focus
 - use new Salesforce records
 - JSON file split
-- soql query generator
+- SOQL query generator
 - mobile automation with the use of Appium
 
 ## Example HTML Report
