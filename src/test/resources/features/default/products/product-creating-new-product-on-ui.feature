@@ -26,7 +26,7 @@ Feature: Product - creating new product with the use of UI
 
   @endSessionAfter
   Scenario: Verifying created data
-    When I click on details tab
+    When I click on "Details" tab
     Then I verify that correct data is visible in "Product Name" field
     And I verify that correct data is visible in "Product Code" field
     And I verify that correct data is visible in "Product Description" field
