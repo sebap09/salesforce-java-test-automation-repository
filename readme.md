@@ -18,7 +18,6 @@ ensuring scalability, flexibility, and maintainability for your Salesforce autom
 - **Clean up data scripts**: For removing no longer needed data.
 - **Verbose Logging**: Easy to read and containing a lot of information logs e.g. exact date, locators etc.
 - **Data-Driven Testing**: Test data generated dynamically using DataFaker.
-- **Deployment-ready yaml configuration**: Feature files paths, glue paths and plugins can be easily configured.
 - **Data stored in JSON:** Credentials, endpoints, org data, validation messages, data structure is stored in well-known JSON format.
 
 ## Technology Stack
@@ -27,12 +26,14 @@ ensuring scalability, flexibility, and maintainability for your Salesforce autom
 - **Cucumber**: Behavior-Driven Development (BDD) framework for defining tests in a human-readable format.
 - **Selenium**: Web automation tool for interacting with the Salesforce UI.
 - **TestNG**: Test execution framework for organizing and running tests.
-- **HttpClient**: HTTP client for making REST API calls to Salesforce for backend operations.
+- **HttpClient5**: HTTP client for making REST API calls to Salesforce for backend operations.
 - **Log4j**: Logging framework for detailed logging and debugging.
 - **DataFaker**: Library used to generate realistic test data for Salesforce records.
-- **SnakeYAML**: Library for parsing and writing YAML files, used to manage test configuration and data.
+- **JSON**: Lightweight library for parsing, generating, and manipulating JSON data using simple JSONObject and JSONArray APIs.
 - **Gson**: Library for serializing and deserializing JSON data, essential for handling Salesforce API responses and requests.
-
+- **Lombok**: Library that reduces boilerplate code by automatically generating common methods like getters, setters, constructors, and builders at compile time using annotations.
+- **JakartaXMLBind**: One of two libraries used for SOAP API communication, defines the standard Jakarta XML Binding (JAXB) APIs for mapping Java objects to XML and back.
+- **JaxbRuntime**: Second library used for SOAP API communication, provides the concrete reference implementation that actually performs the marshalling and unmarshalling at runtime.
 For exact versions check pom.xml file :)
 
 ## Design patterns
@@ -60,8 +61,14 @@ For exact versions check pom.xml file :)
     ```bash
      mvn clean install
     ```
-3. Set up src/resources/run-test.yaml file with correct paths for features & glues.
-4. Set up the src/resources/data.json:
+3. Set up @CucumberOptions in RunCucumberTest class with correct paths for features & glues.
+4. Define project structure as (or adapt packages to structure preferred by yourself):
+- Source Folder - src\main\java
+- Test Source Folder - src\test\java
+- Resource Folder - src\resources
+- Test Resource Folder - src\test\resources
+
+5. Set up the src/resources/data.json:
 - adminUser credentials
 - salesforceConsumerKey: Connected app key.
 - salesforceConsumerSecret: Connected app secret.
@@ -70,8 +77,8 @@ For exact versions check pom.xml file :)
 - page urls & endpoints
 - default dummy data
 
-5. Configure logging levels and output formats in the src/resources/log4j2.properties file.
-6. Check tests reliability for specific resolution (from default tests are build for 2560x1440 screen resolution, so for smaller resolution additional scrolls might be needed).
+6. Configure logging levels and output formats in the src/resources/log4j2.properties file.
+7. Check tests reliability for specific resolution (from default tests are build for 2560x1440 screen resolution, so for smaller resolution additional scrolls might be needed).
 
 ## Running Tests
 1. Run Cucumber Tests: You can run the tests using Maven (by default it runs all feature files):
@@ -101,11 +108,14 @@ For exact versions check pom.xml file :)
 ## Contributing
 Any contributions are welcome to improve this automation suite. Feel free to open issues and submit pull requests.
 
-## Next focus
+## Ideas to develop in the future
 - use new Salesforce records
 - JSON file split
 - SOQL query generator
 - mobile automation with the use of Appium
+
+## Changelog
+* 2025 - Due to Salesforce security changes related to more strict policy in terms of IP whitelisting, methods of logging in as a user in UI were adapted to authenticating with SOAP API and then logging in with frontdoor URL with the use of established session id parameter. It was required as a workaround to the need of email token verifications with each UI test session (current Salesforce implementation stores cookie in user browser after providing email token verification).
 
 ## Example HTML Report
 ![Example HTML Report](docs/images/html-report-example.png)

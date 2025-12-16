@@ -39,6 +39,5 @@ build/
 ### Mac OS ###
 .DS_Store
 
-run-test.yaml
 TODO.txt
 data.json
