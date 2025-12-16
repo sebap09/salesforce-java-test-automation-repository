@@ -20,7 +20,7 @@ public class ApiStepsDefinitions {
     }
 
 
-    @ParameterType("Account|Product2|Contact|User|Asset")
+    @ParameterType("Account|Product2|Product|Contact|User|Asset")
     public String salesforceObject(String salesforceObject){
         return salesforceObject;
     }
@@ -65,6 +65,9 @@ public class ApiStepsDefinitions {
 
     @When("I fetch Id from \"{salesforceObject}\" created by currently fetched user")
     public void fetchIdFromSalesforceObjectByCreatedByUser(String salesforceObject) {
+        if (salesforceObject.equals("Product"))
+            salesforceObject = "Product2";
+
         String fetchedUserId = testContext.getSharedData().getData(SharedDataKeys.REFERENCE_ID).toString();
         String query = "SELECT Id from " + salesforceObject + " WHERE CreatedById = '" + fetchedUserId + "'";
 
@@ -201,7 +204,7 @@ public class ApiStepsDefinitions {
         );
     }
 
-    @Given("I remove all {string} records created by currently fetched user")
+    @When("I remove all {string} records created by currently fetched user")
     public void removeAllRecordsCreatedWith(String object) {
         Object fetchedObjectsIds = testContext.getSharedData().getData(SharedDataKeys.FETCHED_SOBJECTS_IDS);
         if(fetchedObjectsIds == null)
