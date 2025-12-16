@@ -5,10 +5,8 @@ Feature: Asset - creating new asset and corresponding account, product and conta
 
   @initSessionBefore
   Scenario: Logging to Salesforce platform as adminUser
-    Given I am on the login page
-    When I fill "adminUser" credential to "username" input field
-    And I fill "adminUser" credential to "password" input field
-    And I click login button
+    Given I authorize as adminUser with SOAP API and fetch session id
+    And I login to Salesforce frontdoor with fetched session id
     Then I verify user is correctly logged in
 
   Scenario: Creating new account with the use of UI as adminUser
@@ -23,20 +21,18 @@ Feature: Asset - creating new asset and corresponding account, product and conta
     And I fill "RANDOM_CITY" to "city" account form input field
     And I fill "RANDOM_PROVINCE" to "province" account form input field
     And I fill "RANDOM_COUNTRY" to "country" account form input field
-    And I fill "RANDOM_DESCRIPTION" to "Description" account form text area
     And I select "Technology Partner" from "Type" object form dropdown
     And I select "Banking" from "Industry" object form dropdown
     And I click "SaveEdit" button
     Then I verify success toast with "accountCreated" message
 
   Scenario: Verifying created account data
-    When I click on "Details" tab
-    Then I verify that correct data is visible in "Account Name" field
-    And I verify that correct data is visible in "Phone" field
-    And I verify that correct data is visible in "Type" field
-    And I verify that correct data is visible in "Industry" field
-    And I verify that correct data is visible in "Billing Address" field
-    And I verify that correct data is visible in "Description" field
+    When I click on "Details" tab custom layout
+    Then I verify that correct data is visible in "Account Name" field custom layout
+    And I verify that correct data is visible in "Phone" field custom layout
+    And I verify that correct data is visible in "Type" field custom layout
+    And I verify that correct data is visible in "Industry" field custom layout
+    And I verify that correct data is visible in "Billing Address" field custom layout
 
   Scenario: Creating new contact with the use of UI as adminUser
     Given I am on the contact page
