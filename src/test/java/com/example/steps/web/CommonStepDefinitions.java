@@ -65,7 +65,11 @@ public class CommonStepDefinitions {
     @When("I click on details tab")
     public void clickOnDetailsTab() {
         commonPage.clickOnDetailsTab();
+    }
 
+    @When("I click on details tab custom layout")
+    public void clickOnDetailsTabCustomLayout() {
+        commonPage.clickOnDetailsTabCustomLayout();
     }
 
     @When("I click on menu button")
@@ -137,19 +141,7 @@ public class CommonStepDefinitions {
     @Then("I verify that correct data is visible in \"{detailsField}\" field")
     public void verifyDataInField(String detailsField) {
         String expectedValue = switch (detailsField) {
-            case "Account Name", "Account" -> testContext.getSharedData().getData(SharedDataKeys.RANDOM_ACCOUNT_NAME).toString();
-            case "Phone" -> testContext.getSharedData().getData(SharedDataKeys.RANDOM_PHONE_NUMBER).toString();
-            case "Type" -> testContext.getSharedData().getData(SharedDataKeys.ACCOUNT_TYPE).toString();
-            case "Industry" -> testContext.getSharedData().getData(SharedDataKeys.ACCOUNT_INDUSTRY).toString();
             case "Description" -> testContext.getSharedData().getData(SharedDataKeys.RANDOM_DESCRIPTION).toString();
-            case "Billing Address" -> String.format(
-                    "%s\n%s %s\n%s %s",
-                    testContext.getSharedData().getData(SharedDataKeys.RANDOM_STREET).toString(),
-                    testContext.getSharedData().getData(SharedDataKeys.RANDOM_POSTAL_CODE).toString(),
-                    testContext.getSharedData().getData(SharedDataKeys.RANDOM_CITY).toString(),
-                    testContext.getSharedData().getData(SharedDataKeys.RANDOM_PROVINCE).toString(),
-                    testContext.getSharedData().getData(SharedDataKeys.RANDOM_COUNTRY).toString()
-            );
             case "Product Name", "Product" -> testContext.getSharedData().getData(SharedDataKeys.RANDOM_PRODUCT_NAME).toString();
             case "Product Code" -> testContext.getSharedData().getData(SharedDataKeys.RANDOM_PRODUCT_CODE).toString();
             case "Product Description" -> testContext.getSharedData().getData(SharedDataKeys.RANDOM_PRODUCT_DESCRIPTION).toString();
@@ -168,5 +160,26 @@ public class CommonStepDefinitions {
         };
 
         Assert.assertEquals(commonPage.getFieldValue(detailsField),expectedValue);
+    }
+
+    @Then("I verify that correct data is visible in \"{detailsField}\" field custom layout")
+    public void verifyDataInFieldCustomLayout(String detailsField) {
+        String expectedValue = switch (detailsField) {
+            case "Account Name", "Account" -> testContext.getSharedData().getData(SharedDataKeys.RANDOM_ACCOUNT_NAME).toString();
+            case "Phone" -> testContext.getSharedData().getData(SharedDataKeys.RANDOM_PHONE_NUMBER).toString();
+            case "Type" -> testContext.getSharedData().getData(SharedDataKeys.ACCOUNT_TYPE).toString();
+            case "Industry" -> testContext.getSharedData().getData(SharedDataKeys.ACCOUNT_INDUSTRY).toString();
+            case "Billing Address" -> String.format(
+                    "%s\n%s %s\n%s %s",
+                    testContext.getSharedData().getData(SharedDataKeys.RANDOM_STREET).toString(),
+                    testContext.getSharedData().getData(SharedDataKeys.RANDOM_POSTAL_CODE).toString(),
+                    testContext.getSharedData().getData(SharedDataKeys.RANDOM_CITY).toString(),
+                    testContext.getSharedData().getData(SharedDataKeys.RANDOM_PROVINCE).toString(),
+                    testContext.getSharedData().getData(SharedDataKeys.RANDOM_COUNTRY).toString()
+            );
+            default -> null;
+        };
+
+        Assert.assertEquals(commonPage.getFieldValueCustomLayout(detailsField),expectedValue);
     }
 }

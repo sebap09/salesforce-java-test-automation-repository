@@ -21,7 +21,6 @@ Feature: Account - creating new account with the use of UI
     And I fill "RANDOM_CITY" to "city" account form input field
     And I fill "RANDOM_PROVINCE" to "province" account form input field
     And I fill "RANDOM_COUNTRY" to "country" account form input field
-    And I fill "RANDOM_DESCRIPTION" to "Description" account form text area
     And I select "Technology Partner" from "Type" object form dropdown
     And I select "Banking" from "Industry" object form dropdown
     And I click "SaveEdit" button
@@ -29,10 +28,9 @@ Feature: Account - creating new account with the use of UI
 
   @endSessionAfter
   Scenario: Verifying created data
-    When I click on details tab
-    Then I verify that correct data is visible in "Account Name" field
-    And I verify that correct data is visible in "Phone" field
-    And I verify that correct data is visible in "Type" field
-    And I verify that correct data is visible in "Industry" field
-    And I verify that correct data is visible in "Billing Address" field
-    And I verify that correct data is visible in "Description" field
+    When I click on details tab custom layout
+    Then I verify that correct data is visible in "Account Name" field custom layout
+    And I verify that correct data is visible in "Phone" field custom layout
+    And I verify that correct data is visible in "Type" field custom layout
+    And I verify that correct data is visible in "Industry" field custom layout
+    And I verify that correct data is visible in "Billing Address" field custom layout
