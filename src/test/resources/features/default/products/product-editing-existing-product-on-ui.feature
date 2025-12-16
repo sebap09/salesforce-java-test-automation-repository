@@ -5,10 +5,8 @@ Feature: Product - editing existing product with the use of UI
 
   @initSessionBefore
   Scenario: Logging to Salesforce platform as adminUser
-    Given I am on the login page
-    When I fill "adminUser" credential to "username" input field
-    And I fill "adminUser" credential to "password" input field
-    And I click login button
+    Given I authorize as adminUser with SOAP API and fetch session id
+    And I login to Salesforce frontdoor with fetched session id
     Then I verify user is correctly logged in
 
   Scenario: Editing existing account with the use of UI as adminUser
