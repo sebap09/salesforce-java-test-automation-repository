@@ -104,6 +104,28 @@ public class ApiStepsDefinitions {
                 ));
     }
 
+    @Given("I authorize as adminUser with SOAP API and fetch session id")
+    public void authorizeWithSOAPAndFetchSessionId() {
+        testContext.getSharedData().setData(SharedDataKeys.SESSION_ID,
+                testContext.getHttpClient().authorizeWithSOAPAndFetchSessionId(
+                        testContext.getJSON().getString("environment"),
+                        testContext.getJSON().getJSONObject("apiData").getString("soapEndpoint"),
+                        testContext.getJSON().getJSONObject("adminUser").getString("username"),
+                        testContext.getJSON().getJSONObject("adminUser").getString("password"),
+                        testContext.getJSON().getJSONObject("adminUser").getString("sfSecurityToken")
+                ));
+    }
+
+    @Given("I login to Salesforce frontdoor with fetched session id")
+    public void loginToSalesforceFrontDoorWithFetchedSessionId() {
+        String frontDoorURLWihSessionId =
+                testContext.getJSON().getJSONObject("pageUrls").getString("login") +
+                testContext.getJSON().getJSONObject("apiData").getString("frontdoorEndpoint") +
+                testContext.getSharedData().getData(SharedDataKeys.SESSION_ID);
+
+        testContext.getDriver().get(frontDoorURLWihSessionId);
+    }
+
     @When("I update {string} in {string} with {string} value")
     public void updateFieldFromSalesforceObject(String fields, String salesforceObject, String values) {
         String[] fieldsArray = fields.split(",");

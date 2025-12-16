@@ -1,8 +1,13 @@
 package com.example.api;
 
 import com.example.api.responses.*;
+import com.example.api.responses.soap.Result;
+import com.example.api.responses.soap.SoapEnvelope;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Unmarshaller;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.*;
@@ -13,6 +18,7 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.StringReader;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
@@ -53,6 +59,46 @@ public class HttpClient {
         return authenticationResponse.access_token();
     }
 
+    public String authorizeWithSOAPAndFetchSessionId(String environment, String endpoint, String userName, String password, String securityToken){
+        String soapBody = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+                        "<env:Envelope xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"\n" +
+                        "              xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n" +
+                        "              xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\">\n" +
+                        "   <env:Body>\n" +
+                        "      <n1:login xmlns:n1=\"urn:partner.soap.sforce.com\">\n" +
+                        "         <n1:username>" + userName + "</n1:username>\n" +
+                        "         <n1:password>" + password + securityToken + "</n1:password>\n" +
+                        "      </n1:login>\n" +
+                        "   </env:Body>\n" +
+                        "</env:Envelope>";
+
+
+        StringEntity content = new StringEntity(soapBody, ContentType.TEXT_XML);
+        ClassicHttpRequest request = ClassicRequestBuilder.post(
+                createUrl(environment,endpoint))
+                .addHeader(HttpHeaders.CONTENT_TYPE, "text/xml")
+                .addHeader("SoapAction", "login")
+                .setEntity(content)
+                .build();
+
+        String xmlResponse = sendHttpRequest(request,"Authorize with soap");
+        String sessionId = "";
+        
+        try {
+            JAXBContext context = JAXBContext.newInstance(SoapEnvelope.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            
+            SoapEnvelope envelope = (SoapEnvelope) unmarshaller.unmarshal(new StringReader(xmlResponse));
+            Result result = envelope.getBody().getLoginResponse().getResult();
+            sessionId = result.getSessionId();
+        }
+        catch (JAXBException exception){
+            logger.error(exception.getStackTrace());
+        }
+
+        return sessionId;
+    }
+
     public String createSalesforceObject(String environment, String endpoint, String token, JSONObject body){
         StringEntity content = new StringEntity(body.toString(), ContentType.APPLICATION_JSON);
         ClassicHttpRequest request = ClassicRequestBuilder.post(
@@ -66,7 +112,7 @@ public class HttpClient {
                 sendHttpRequest(request,"Creating Salesforce Object"),
                 SObjectResponse.class);
 
-        String id = sObjectResponse.id();
+       String id = sObjectResponse.id();
         logger.info("Object created successfully with id: " + id);
         return id;
     }
