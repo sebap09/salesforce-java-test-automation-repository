@@ -17,6 +17,8 @@ public class CommonPage {
     private WebElement detailsTab;
     @FindBy(xpath = CommonPageLocators.DETAILS_TAB_CONTENT)
     private WebElement detailsTabContent;
+    @FindBy(xpath = CommonPageLocators.DETAILS_TAB_CONTENT_CUSTOM_LAYOUT)
+    private WebElement detailsTabContentCustomLayout;
     @FindBy(xpath = CommonPageLocators.MENU_BUTTON)
     private WebElement menuButton;
     @FindBy(xpath = CommonPageLocators.MENU_BUTTON_CONTENT)
@@ -42,6 +44,11 @@ public class CommonPage {
         return primaryActionsBot.getElementAttribute(xpath,"innerText");
     }
 
+    public String getFieldValueCustomLayout(String label){
+        By xpath = By.xpath(String.format(CommonPageLocators.DETAILS_FIELD_BY_LABEL_CUSTOM_LAYOUT,label,label));
+        return primaryActionsBot.getElementAttribute(xpath,"innerText");
+    }
+
     public void fillValueToTextAreaByName(String value, String name){
         By xpath = By.xpath(String.format(CommonPageLocators.TEXT_AREA_BY_NAME,name));
         primaryActionsBot.fillValueToElement(xpath,value);
@@ -57,6 +64,11 @@ public class CommonPage {
     public void clickOnDetailsTab() {
         primaryActionsBot.clickElement(detailsTab);
         primaryActionsBot.waitForElementToBeDisplayed(detailsTabContent,Duration.ofSeconds(5));
+    }
+
+    public void clickOnDetailsTabCustomLayout() {
+        primaryActionsBot.clickElement(detailsTab);
+        primaryActionsBot.waitForElementToBeDisplayed(detailsTabContentCustomLayout,Duration.ofSeconds(5));
     }
 
     public void clickOnMenuButton() {
