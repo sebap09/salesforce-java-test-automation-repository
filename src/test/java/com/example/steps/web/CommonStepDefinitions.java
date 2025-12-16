@@ -146,6 +146,7 @@ public class CommonStepDefinitions {
     public void verifyDataInField(String detailsField) {
         String expectedValue = switch (detailsField) {
             case "Description" -> testContext.getSharedData().getData(SharedDataKeys.RANDOM_DESCRIPTION).toString();
+            case "Account Name", "Account" -> testContext.getSharedData().getData(SharedDataKeys.RANDOM_ACCOUNT_NAME).toString();
             case "Product Name", "Product" -> testContext.getSharedData().getData(SharedDataKeys.RANDOM_PRODUCT_NAME).toString();
             case "Product Code" -> testContext.getSharedData().getData(SharedDataKeys.RANDOM_PRODUCT_CODE).toString();
             case "Product Description" -> testContext.getSharedData().getData(SharedDataKeys.RANDOM_PRODUCT_DESCRIPTION).toString();
