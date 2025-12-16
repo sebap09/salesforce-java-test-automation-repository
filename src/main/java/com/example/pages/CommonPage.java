@@ -13,8 +13,6 @@ import java.time.Duration;
 public class CommonPage {
     private final PrimaryActionsBot primaryActionsBot;
 
-    @FindBy(xpath = CommonPageLocators.DETAILS_TAB)
-    private WebElement detailsTab;
     @FindBy(xpath = CommonPageLocators.DETAILS_TAB_CONTENT)
     private WebElement detailsTabContent;
     @FindBy(xpath = CommonPageLocators.DETAILS_TAB_CONTENT_CUSTOM_LAYOUT)
@@ -61,13 +59,17 @@ public class CommonPage {
         primaryActionsBot.fillValueToElement(xpath,value);
     }
 
-    public void clickOnDetailsTab() {
-        primaryActionsBot.clickElement(detailsTab);
+    public void clickOnDetailsTab(String tabName) {
+        By xpath = By.xpath(String.format(CommonPageLocators.DETAILS_TAB,tabName));
+
+        primaryActionsBot.clickElement(xpath);
         primaryActionsBot.waitForElementToBeDisplayed(detailsTabContent,Duration.ofSeconds(5));
     }
 
-    public void clickOnDetailsTabCustomLayout() {
-        primaryActionsBot.clickElement(detailsTab);
+    public void clickOnDetailsTabCustomLayout(String tabName) {
+        By xpath = By.xpath(String.format(CommonPageLocators.DETAILS_TAB,tabName));
+
+        primaryActionsBot.clickElement(xpath);
         primaryActionsBot.waitForElementToBeDisplayed(detailsTabContentCustomLayout,Duration.ofSeconds(5));
     }
 

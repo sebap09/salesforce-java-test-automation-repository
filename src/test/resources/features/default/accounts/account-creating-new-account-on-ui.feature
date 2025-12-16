@@ -28,7 +28,7 @@ Feature: Account - creating new account with the use of UI
 
   @endSessionAfter
   Scenario: Verifying created data
-    When I click on details tab custom layout
+    When I click on "Details" tab custom layout
     Then I verify that correct data is visible in "Account Name" field custom layout
     And I verify that correct data is visible in "Phone" field custom layout
     And I verify that correct data is visible in "Type" field custom layout

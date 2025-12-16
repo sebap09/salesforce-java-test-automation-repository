@@ -48,6 +48,10 @@ public class CommonStepDefinitions {
     public String detailsField(String detailsField){
         return detailsField;
     }
+    @ParameterType("Details|More Information")
+    public String tabName(String tabName){
+        return tabName;
+    }
 
     @Given("I am on the {word} page")
     public void openPage(String pageType) {
@@ -62,14 +66,14 @@ public class CommonStepDefinitions {
                 )
         );
     }
-    @When("I click on details tab")
-    public void clickOnDetailsTab() {
-        commonPage.clickOnDetailsTab();
+    @When("I click on \"{tabName}\" tab")
+    public void clickOnTab(String tabName) {
+        commonPage.clickOnDetailsTab(tabName);
     }
 
-    @When("I click on details tab custom layout")
-    public void clickOnDetailsTabCustomLayout() {
-        commonPage.clickOnDetailsTabCustomLayout();
+    @When("I click on \"{tabName}\" tab custom layout")
+    public void clickOnTabCustomLayout(String tabName) {
+        commonPage.clickOnDetailsTabCustomLayout(tabName);
     }
 
     @When("I click on menu button")
@@ -165,6 +169,7 @@ public class CommonStepDefinitions {
     @Then("I verify that correct data is visible in \"{detailsField}\" field custom layout")
     public void verifyDataInFieldCustomLayout(String detailsField) {
         String expectedValue = switch (detailsField) {
+            case "Description" -> testContext.getSharedData().getData(SharedDataKeys.RANDOM_DESCRIPTION).toString();
             case "Account Name", "Account" -> testContext.getSharedData().getData(SharedDataKeys.RANDOM_ACCOUNT_NAME).toString();
             case "Phone" -> testContext.getSharedData().getData(SharedDataKeys.RANDOM_PHONE_NUMBER).toString();
             case "Type" -> testContext.getSharedData().getData(SharedDataKeys.ACCOUNT_TYPE).toString();

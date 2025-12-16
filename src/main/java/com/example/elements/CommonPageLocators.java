@@ -3,9 +3,9 @@ package com.example.elements;
 public class CommonPageLocators {
     public static final String TEXT_AREA_BY_NAME = "//textarea[@name='%s']";
     public static final String TEXT_AREA_BY_LABEL = "//lightning-textarea//label[text()='%s']/following-sibling::*//textarea";
-    public static final String DETAILS_TAB = "//a[@data-label='Details']";
+    public static final String DETAILS_TAB = "//a[@data-label='%s']";
     public static final String DETAILS_TAB_CONTENT = "//div[contains(@class,'active')]//flexipage-component2[@data-component-id='force_detailPanel']";
-    public static final String DETAILS_TAB_CONTENT_CUSTOM_LAYOUT = "//div[contains(@class,'active')]//flexipage-component2[@data-component-id='flexipage_fieldSection']";
+    public static final String DETAILS_TAB_CONTENT_CUSTOM_LAYOUT = "//div[contains(@class,'active')]//*[contains(@class,'slds-show')]//flexipage-component2[contains(@data-component-id,'flexipage_fieldSection')]";
     public static final String MENU_BUTTON = "//lightning-button-menu[contains(@class,'menu-button')]";
     public static final String MENU_BUTTON_CONTENT = MENU_BUTTON + "/div[contains(@class,'dropdown')]";
     public static final String DATA_TARGET_SELECTION_NAME = "//*[@data-target-selection-name='sfdc:%s.%s.%s']";

@@ -30,7 +30,7 @@ Feature: Contact - creating new contact and corresponding account with the use o
     Then I verify success toast with "accountCreated" message
 
   Scenario: Verifying created account data
-    When I click on details tab
+    When I click on "Details" tab
     Then I verify that correct data is visible in "Account Name" field
     And I verify that correct data is visible in "Phone" field
     And I verify that correct data is visible in "Type" field
@@ -54,7 +54,7 @@ Feature: Contact - creating new contact and corresponding account with the use o
 
   @endSessionAfter
   Scenario: Verifying created contact data
-    When I click on details tab
+    When I click on "Details" tab
     Then I verify that correct data is visible in "Name" field
     And I verify that correct data is visible in "Mobile" field
     And I verify that correct data is visible in "Email" field

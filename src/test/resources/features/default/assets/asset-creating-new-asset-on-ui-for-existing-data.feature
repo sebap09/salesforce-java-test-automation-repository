@@ -30,7 +30,7 @@ Feature: Asset - creating new asset and corresponding account, product and conta
     Then I verify success toast with "accountCreated" message
 
   Scenario: Verifying created account data
-    When I click on details tab
+    When I click on "Details" tab
     Then I verify that correct data is visible in "Account Name" field
     And I verify that correct data is visible in "Phone" field
     And I verify that correct data is visible in "Type" field
@@ -53,7 +53,7 @@ Feature: Asset - creating new asset and corresponding account, product and conta
     Then I verify success toast with "contactCreated" message
 
   Scenario: Verifying created contact data
-    When I click on details tab
+    When I click on "Details" tab
     Then I verify that correct data is visible in "Name" field
     And I verify that correct data is visible in "Mobile" field
     And I verify that correct data is visible in "Email" field
@@ -73,7 +73,7 @@ Feature: Asset - creating new asset and corresponding account, product and conta
     Then I verify success toast with "productCreated" message
 
   Scenario: Verifying created product data
-    When I click on details tab
+    When I click on "Details" tab
     Then I verify that correct data is visible in "Product Name" field
     And I verify that correct data is visible in "Product Code" field
     And I verify that correct data is visible in "Product Description" field
@@ -97,7 +97,7 @@ Feature: Asset - creating new asset and corresponding account, product and conta
 
   @endSessionAfter
   Scenario: Verifying created asset data
-    When I click on details tab
+    When I click on "Details" tab
     Then I verify that correct data is visible in "Asset Name" field
     And I verify that correct data is visible in "Serial Number" field
     And I verify that correct data is visible in "Description" field

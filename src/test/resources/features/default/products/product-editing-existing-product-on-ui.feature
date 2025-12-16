@@ -16,7 +16,7 @@ Feature: Product - editing existing product with the use of UI
     When I fetch Id from "Product2" by "Test Automation Product" Name
     And I open details page of object by fetched id
     And I wait for a page to load
-    And I click on details tab
+    And I click on "Details" tab
     And I click on menu button
     And I click data target selection name of type "StandardButton", "Product2" and "Edit"
     And I fill "RANDOM_PRODUCT_DESCRIPTION" to "Product Description" product form text area
@@ -25,5 +25,5 @@ Feature: Product - editing existing product with the use of UI
 
   @endSessionAfter
   Scenario: Verifying edited data
-    When I click on details tab
+    When I click on "Details" tab
     Then I verify that correct data is visible in "Product Description" field
