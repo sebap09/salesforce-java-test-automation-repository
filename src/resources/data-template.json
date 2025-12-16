@@ -2,7 +2,8 @@
   "adminUser": {
     "username": "",
     "password": "",
-    "sfAccessToken": ""
+    "sfAccessToken": "",
+    "sfSecurityToken": ""
   },
   "orgId": "",
   "environment": "",
@@ -68,6 +69,8 @@
       }
     },
     "queryEndpoint": "",
-    "authEndpoint": ""
+    "authEndpoint": "",
+    "soapEndpoint": "",
+    "frontdoorEndpoint": ""
   }
 }
